@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,3 +6,28 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model datedEvents {
+  eventID       Int            @id @default(autoincrement())
+  eventName     String
+  eventDate     DateTime
+  eventPeriodID Int
+  eventPeriod   timelinePeriods @relation(fields: [eventPeriodID], references: [periodID])
+  eventTypeID   Int
+  eventType     eventTypes  @relation(fields:[eventTypeID], references: [typeID])
+}
+
+model timelinePeriods {
+  periodID     Int            @id @default(autoincrement())
+  periodName   String
+  datedEvents  datedEvents[]
+}
+
+model eventTypes {
+  typeID      Int            @id @default(autoincrement())
+  typeName    String
+  datedEvents datedEvents[]
+}
+
+// // This is your Prisma schema file,
+// // learn more about it in the docs: https://pris.ly/d/prisma-schema
