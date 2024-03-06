@@ -44,6 +44,26 @@ export async function POST(req: NextRequest, res: NextResponse) {
     })
   }
   
+  export async function GET(req: NextRequest, res: NextResponse) {
+    if (req.method === 'GET') {
+        try {
+            const testEntries = await prisma.test.findMany();
+            return NextResponse.json({
+                testEntries,
+            });
+        } catch (error) {
+            console.error('Error fetching test entries:', error);
+            return NextResponse.json({
+                message: 'Internal server error',
+            });
+        }
+    } else {
+        return NextResponse.json({
+            message: 'Internal server error',
+        });
+    }
+  }
+  
   export async function DELETE(req: NextRequest, res: NextResponse) {
     console.log('DELETE');
     // Implement your DELETE logic here
