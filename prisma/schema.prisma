@@ -11,22 +11,24 @@ model datedEvents {
   eventID       Int               @id @default(autoincrement())
   eventName     String
   eventDate     DateTime
-  eventPeriodID Int
-  eventPeriod   timelinePeriods   @relation(fields: [eventPeriodID], references: [periodID])
-  eventTypeID   Int
-  eventType     eventTypes        @relation(fields:[eventTypeID], references: [typeID])
+  eventEndDate  DateTime
+  eventDetails  String
+  // eventPeriodID Int
+  // eventPeriod   timelinePeriods   @relation(fields: [eventPeriodID], references: [periodID])
+  // eventTypeID   Int
+  // eventType     eventTypes        @relation(fields:[eventTypeID], references: [typeID])
 }
 
 model timelinePeriods {
   periodID      Int               @id @default(autoincrement())
   periodName    String
-  datedEvents   datedEvents[]
+  // datedEvents   datedEvents[]
 }
 
 model eventTypes {
   typeID        Int               @id @default(autoincrement())
   typeName      String
-  datedEvents   datedEvents[]
+  // datedEvents   datedEvents[]
 }
 
 model test {

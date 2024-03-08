@@ -16,7 +16,7 @@ export default function NewTimelineItemPage() {
     }
 
     async function HandleSubmit(e: FormEvent<HTMLFormElement>) {
-        // prevent refresh
+        // dont refresh page when submitting form
         e.preventDefault()
 
         // gather input
