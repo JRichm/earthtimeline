@@ -11,6 +11,17 @@ export async function POST(req: NextRequest, res: NextResponse) {
     const jsonData = await req.json()
     console.log(jsonData)
 
+    const newEvent = await prisma.datedEvents.create({
+        data: {
+            eventName: jsonData.eventName,
+            eventDate: new Date(jsonData.eventDate),
+            eventEndDate: new Date(jsonData.eventEndDate),
+            eventDetails: jsonData.eventDetails
+        }
+    })
+
+    console.log(newEvent)
+
     return NextResponse.json({ message: "POST endpoint success" })
 }
 
