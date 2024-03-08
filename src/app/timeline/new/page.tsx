@@ -75,7 +75,7 @@ export default function NewTimelineItemPage() {
         // check if there are any errors
         const hasErrors = newErrors.some(error => error !== "")
         if (!hasErrors) {
-            
+
             // call api to add new event
             const response = await fetch('../../../api/timeline/newEvent', {
                 method: 'POST',
@@ -93,6 +93,10 @@ export default function NewTimelineItemPage() {
             // handle api response
             const responseData = await response.json()
             console.log(responseData)
+
+            if (response.ok) {
+                window.location.href = ('/timeline')
+            }
         }
     }
 
