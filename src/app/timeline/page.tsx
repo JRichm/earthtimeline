@@ -1,4 +1,5 @@
 import { Josefin_Sans } from "next/font/google";
+import TimelineEntries from "../components/timelineEntries";
 
 const josefin = Josefin_Sans({ subsets: ["latin"] })
 
@@ -26,6 +27,9 @@ export default function TimelinePage() {
             </div>
             <div className="my-12">
                 <TimlineComponent />
+            </div>
+            <div>
+                <TimelineEntries />
             </div>
         </main>
     )

@@ -4,7 +4,17 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient();
 
 export async function GET(req: NextRequest, res: NextResponse) {
-    return NextResponse.json({ message: "GET endpoint success" })
+    try {
+        const events = await prisma.datedEvents.findMany()
+        return NextResponse.json({
+            events
+        })
+    } catch (error) {
+        console.error('Error fetching events: ', error)
+        return NextResponse.json({
+            message: "Internal server error"
+        })
+    }
 }
 
 export async function POST(req: NextRequest, res: NextResponse) {
