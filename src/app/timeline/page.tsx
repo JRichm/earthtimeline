@@ -19,8 +19,6 @@ export default function TimelinePage() {
     const [retrievedEvents, setEvents] = useState<EventType[]>([])
     const [loading, setLoading] = useState(true)
 
-    console.log("timeline page")
-
     useEffect(() => {
 
         console.log("use effect")
@@ -32,9 +30,6 @@ export default function TimelinePage() {
                         'Content-Type': 'application/json'
                     }
                 })
-
-                console.log("response")
-                console.log(response)
     
                 if (response.ok) {
                     const data = await response.json()
@@ -67,9 +62,9 @@ export default function TimelinePage() {
         const eventWidth = 10;
 
         return (
-            <div key={event.eventName} className="absolute w-[10px] h-[10px] bg-blue-500 rounded-full cursor-pointer" style={{ left: `calc(${positionPercent}% - ${eventWidth / 2}px)`, zIndex: 2 }}>
+            <div key={event.eventName} className="absolute w-[10px] h-[10px] translate-y-[-50%] bg-blue-500 rounded-full cursor-pointer" style={{ left: `calc(${positionPercent}% - ${eventWidth / 2}px)`, zIndex: 2 }}>
               <div>
-                <p>{event.eventName}</p>
+                {/* <p>{event.eventName}</p> */}
               </div>
             </div>
         )
@@ -95,30 +90,30 @@ export default function TimelinePage() {
                     <div className="flex flex-row mt-8 mb-2">
                         {/* event type label column */}
                         <div className="flex flex-col pl-10 pr-3">
-                            {
+                            {/* {
                                 eventTypes && 
                                     eventTypes.map((eventType) => (
                                         <p key={eventType} className="h-6 text-nowrap text-right align-middle">{eventType}</p>
                                     ))
-                            }
-                            <p className="h-6 text-nowrap text-right align-middle">default</p>
+                            } */}
+                            <p className="h-6 text-nowrap text-right align-middle">Timeline</p>
                         </div>
 
                         {/* timeline */}
                         <div className="w-full mr-5">
                             <div className="flex flex-col w-full border-l border-r">
-                                {
+                                {/* {
                                     eventTypes &&
                                         eventTypes.map((eventType) => (
                                             <div key={eventType} className="h-6 flex place-items-center">
                                                 <hr className="h-0 w-full" />
                                             </div>
                                         ))
-                                }
+                                } */}
                                 
                                 <div key={"default"} className="h-6 flex place-items-center relative">
                                     <hr className="h-0 w-full" />
-                                    <div className='h-[50px] flex align-items-center'>
+                                    <div className='flex align-items-center'>
                                         {
                                             retrievedEvents.map((event: EventType) => (
                                                 <TimelineEvent key={event.eventID} event={event} />
