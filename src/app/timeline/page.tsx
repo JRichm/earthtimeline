@@ -19,7 +19,11 @@ export default function TimelinePage() {
     const [retrievedEvents, setEvents] = useState<EventType[]>([])
     const [loading, setLoading] = useState(true)
 
+    console.log("timeline page")
+
     useEffect(() => {
+
+        console.log("use effect")
         const fetchEvents = async () => {
             try {
                 const response = await fetch('../../api/timeline/newEvent', {
@@ -28,10 +32,16 @@ export default function TimelinePage() {
                         'Content-Type': 'application/json'
                     }
                 })
+
+                console.log("response")
+                console.log(response)
     
                 if (response.ok) {
                     const data = await response.json()
-                    setEvents(data.events)
+                    const sortedEvents = data.events.sort((a: EventType, b: EventType) => {
+                        return new Date(a.eventDate).getTime() - new Date(b.eventDate).getTime();
+                    })
+                    setEvents(sortedEvents)
                 } else {
                     console.error('Failed to fetch events')
                 }
@@ -46,12 +56,24 @@ export default function TimelinePage() {
 
     // set date variables
     const time = new Date();
-    const startDate = retrievedEvents.length > 0
-    ? new Date(Math.min(...retrievedEvents.map(event => new Date(event.eventDate).getTime())))
-    : null;
-  
-    const endDate = time;
 
+    const startDate = retrievedEvents.length > 0 ? new Date(retrievedEvents[0].eventDate) : new Date();
+    const endDate = retrievedEvents.length > 0 ? new Date(retrievedEvents[retrievedEvents.length - 1].eventDate) : new Date();
+    const totalDays = (endDate.getTime() - startDate.getTime()) / (24 * 60 * 60 * 1000)
+
+    const TimelineEvent: React.FC<{ event: EventType }> = ({ event }) => {
+        const eventDays = (new Date(event.eventDate).getTime() - startDate.getTime()) / (24 * 60 * 60 * 1000)
+        const positionPercent = (eventDays / totalDays) * 100
+
+        return (
+            <div key={event.eventName} className="absolute w-[10px] h-[10px] bg-blue-500 rounded-full translate-x-[-50%] cursor-pointer transition-all" style={{ left: `${positionPercent}%`,zIndex: 2 }}>
+              <div>
+                <p>{event.eventName}</p>
+              </div>
+            </div>
+        )
+    }
+  
     console.log(startDate)
 
     const eventTypes = [
@@ -88,25 +110,33 @@ export default function TimelinePage() {
                                     eventTypes &&
                                         eventTypes.map((eventType) => (
                                             <div key={eventType} className="h-6 flex place-items-center">
-                                                <hr className="h-0 w-full bg-black" />
+                                                <hr className="h-0 w-full" />
                                             </div>
                                         ))
                                 }
                                 
                                 <div key={"default"} className="h-6 flex place-items-center">
-                                    <hr className="h-0 w-full bg-black" />
+                                    <hr className="h-0 w-full" />
+                                    <div className='h-[50px] flex align-items-center'>
+                                        {
+                                            retrievedEvents.map((event: EventType) => (
+                                                <TimelineEvent key={event.eventID} event={event} />
+                                            ))
+                                        }
+                                    </div>
                                 </div>
                             </div>
+
                             {/* date key */}
                             <div className="flex flex-row mt-5 justify-between w-full">
                                 <div className="flex flex-col">
                                     <div className="border-l-2 h-4 border-gray-600"></div>
-                                    <p className="">2000</p>
+                                    <p className="">{startDate.getFullYear()}</p>
                                 </div>
 
                                 <div className="flex flex-col">
                                     <div className="border-l-2 h-4 border-gray-600"></div>
-                                    <p className="">2024</p>
+                                    <p className="">{endDate.getFullYear()}</p>
                                 </div>
                             </div>
                         </div>

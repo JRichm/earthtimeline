@@ -27,7 +27,10 @@ export default function TimelineEntries() {
     
                 if (response.ok) {
                     const data = await response.json()
-                    setEvents(data.events)
+                    const sortedEvents = data.events.sort((a: EventType, b: EventType) => {
+                        return new Date(a.eventDate).getTime() - new Date(b.eventDate).getTime();
+                    })
+                    setEvents(sortedEvents)
                 } else {
                     console.error('Failed to fetch events')
                 }
@@ -48,7 +51,7 @@ export default function TimelineEntries() {
                 {loading ? (
                     <p>Loading...</p>
                 ) : (
-                    <table className='w-full'>
+                    <table className='w-full row-'>
                         <thead>
                             <tr className='border-b'>
                                 <th className='w-24'>ID</th>
