@@ -96,12 +96,12 @@ export default function TimelinePage() {
                                         <p key={eventType} className="h-6 text-nowrap text-right align-middle">{eventType}</p>
                                     ))
                             } */}
-                            <p className="h-6 text-nowrap text-right align-middle">Timeline</p>
+                            <p className="h-6 text-nowrap text-right align-middle font-bold tracking-[2px]">All Events</p>
                         </div>
 
                         {/* timeline */}
                         <div className="w-full mr-5">
-                            <div className="flex flex-col w-full border-l border-r">
+                            <div className="flex flex-col w-full border-l-[2px] border-r-[2px] border-gray-400">
                                 {/* {
                                     eventTypes &&
                                         eventTypes.map((eventType) => (
@@ -112,7 +112,7 @@ export default function TimelinePage() {
                                 } */}
                                 
                                 <div key={"default"} className="h-6 flex place-items-center relative">
-                                    <hr className="h-0 w-full" />
+                                    <hr className="h-0 w-full border-gray-400 border-[1.5px]" />
                                     <div className='flex align-items-center'>
                                         {
                                             retrievedEvents.map((event: EventType) => (
@@ -130,8 +130,8 @@ export default function TimelinePage() {
                                     <p className="">{startDate.getFullYear()}</p>
                                 </div>
 
-                                <div className="flex flex-col">
-                                    <div className="border-l-2 h-4 border-gray-600"></div>
+                                <div className="flex flex-col justify-items-end">
+                                    <div className="border-r-2 h-4 border-gray-600"></div>
                                     <p className="">{endDate.getFullYear()}</p>
                                 </div>
                             </div>

@@ -69,7 +69,7 @@ export default function TimelineEntries() {
                                         <td className='w-80 text-start align-top'>{event.eventName}</td>
                                         <td className='align-top'>{format(event.eventDate, 'yyyy-MM-dd')}</td>
                                         <td className='align-top'>{format(event.eventEndDate, 'yyyy-MM-dd')}</td>
-                                        <td className='text-start align-top max-w-[250px]'>{event.eventDetails}</td>
+                                        <td className='text-start align-top max-w-[250px]'>{event.eventDetails.length > 100 ? event.eventDetails.substring(0, 50) + '...' : event.eventDetails}</td>
                                     </tr>
                                 ))
                                 ) : (
