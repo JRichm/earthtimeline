@@ -64,9 +64,10 @@ export default function TimelinePage() {
     const TimelineEvent: React.FC<{ event: EventType }> = ({ event }) => {
         const eventDays = (new Date(event.eventDate).getTime() - startDate.getTime()) / (24 * 60 * 60 * 1000)
         const positionPercent = (eventDays / totalDays) * 100
+        const eventWidth = 10;
 
         return (
-            <div key={event.eventName} className="absolute w-[10px] h-[10px] bg-blue-500 rounded-full translate-x-[-50%] cursor-pointer transition-all" style={{ left: `${positionPercent}%`,zIndex: 2 }}>
+            <div key={event.eventName} className="absolute w-[10px] h-[10px] bg-blue-500 rounded-full cursor-pointer" style={{ left: `calc(${positionPercent}% - ${eventWidth / 2}px)`, zIndex: 2 }}>
               <div>
                 <p>{event.eventName}</p>
               </div>
@@ -115,7 +116,7 @@ export default function TimelinePage() {
                                         ))
                                 }
                                 
-                                <div key={"default"} className="h-6 flex place-items-center">
+                                <div key={"default"} className="h-6 flex place-items-center relative">
                                     <hr className="h-0 w-full" />
                                     <div className='h-[50px] flex align-items-center'>
                                         {
