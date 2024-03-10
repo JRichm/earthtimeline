@@ -62,9 +62,9 @@ export default function TimelinePage() {
         const eventWidth = 10;
 
         return (
-            <div key={event.eventName} className="absolute w-[10px] h-[10px] translate-y-[-50%] bg-blue-500 rounded-full cursor-pointer" style={{ left: `calc(${positionPercent}% - ${eventWidth / 2}px)`, zIndex: 2 }}>
-              <div>
-                {/* <p>{event.eventName}</p> */}
+            <div key={event.eventName} className="absolute w-[10px] h-[10px] translate-y-[-50%] bg-blue-500 rounded-full cursor-pointer group" style={{ left: `calc(${positionPercent}% - ${eventWidth / 2}px)`, zIndex: 2 }}>
+              <div className='hidden group-hover:block top-10 bg-blue-500 rounded text-white p-2 w-fit'>
+                <p className=''>{event.eventName}</p>
               </div>
             </div>
         )
@@ -113,7 +113,7 @@ export default function TimelinePage() {
                                 
                                 <div key={"default"} className="h-6 flex place-items-center relative">
                                     <hr className="h-0 w-full border-gray-400 border-[1.5px]" />
-                                    <div className='flex align-items-center'>
+                                    <div className=''>
                                         {
                                             retrievedEvents.map((event: EventType) => (
                                                 <TimelineEvent key={event.eventID} event={event} />
@@ -151,7 +151,7 @@ export default function TimelinePage() {
             <div className="my-12">
                 <TimlineComponent />
             </div>
-            <h1 className={`text-3xl text-center font-bold tracking-[3px] ${josefin.className}`}>Events Table</h1>
+            <h1 className={`text-3xl font-bold tracking-[3px] ${josefin.className}`}>Events Table</h1>
             <div>
                 <TimelineEntries />
             </div>
