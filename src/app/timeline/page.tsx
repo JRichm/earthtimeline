@@ -70,18 +70,16 @@ export default function TimelinePage() {
         )
     }
   
-    console.log(startDate)
-
-    const eventTypes = [
-        "Art",
-        "Discoveries",  
-        "Political Events",
-        "Astronomy",
-        "Wars",
-        "Inventions",
-        "Disasters",
-        "Epidemics"
-    ]
+    // const eventTypes = [
+    //     "Art",
+    //     "Discoveries",  
+    //     "Political Events",
+    //     "Astronomy",
+    //     "Wars",
+    //     "Inventions",
+    //     "Disasters",
+    //     "Epidemics"
+    // ]
 
     const TimlineComponent = () => {
         return (

@@ -43,8 +43,6 @@ export default function TimelineEntries() {
         fetchEvents()
     }, [])
 
-    console.log(retrievedEvents)
-
     return (
         <div className='bg-gray-400 place-self-center p-2'>
             <div className='bg-gray-100'>
@@ -83,9 +81,4 @@ export default function TimelineEntries() {
             </div>
         </div>
     )
-}
-
-function isValidDate(date: Date): boolean {
-    // Check if the date is a valid JavaScript Date object
-    return date instanceof Date && !isNaN(date.getTime());
 }

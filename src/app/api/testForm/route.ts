@@ -7,17 +7,11 @@ export async function POST(req: NextRequest, res: NextResponse) {
     if (req.method === 'POST') {
       try {
         const jsonData = await req.json()
-
-        console.log("jsonData")
-        console.log(jsonData)
-
         const testEntry = await prisma.test.create({
             data: {
                 input: jsonData.input
             }
         })
-
-        console.log(testEntry)
 
         return NextResponse.json({
             message: 'POST request successful' 
