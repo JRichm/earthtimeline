@@ -122,7 +122,7 @@ export default function NewTimelineItemPage() {
                             <label>Event Date</label>
                             <p className='text-red-500'>{eventErrors[1]}</p>
                         </span>
-                        <input type="date" name="event-date-input" placeholder="YYYY-MM-DD BCE"></input>
+                        <input type="date" name="event-date-input"></input>
                     </div>
 
 
@@ -140,7 +140,7 @@ export default function NewTimelineItemPage() {
                                 <label>End Date</label>
                                 <p className='text-red-500'>{eventErrors[2]}</p>
                             </span>
-                            <input type="date" name="event-end-date-input" placeholder="YYYY-MM-DD BCE"></input>
+                            <input type="date" name="event-end-date-input"></input>
                         </div>
                     )}
 
